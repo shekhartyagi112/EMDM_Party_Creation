@@ -1,7 +1,67 @@
-echo "# EMDM_Party_Creation" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/shekhartyagi112/EMDM_Party_Creation.git
-git push -u origin main
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+chrome_options = webdriver.ChromeOptions()
+prefs = {"profile.default_content_setting_values.notifications" : 2}
+chrome_options.add_experimental_option("prefs",prefs)
+driver=webdriver.Chrome(service=ChromeService(executable_path="F:\Drivers\chromedriver.exe"))
+driver.maximize_window()
+driver.implicitly_wait(5)
+driver.get("https://emdm-ws-stg.its.hpecorp.net/EMDMUI/#/dashboard")
+time.sleep(1)
+UserName= "shekhar.tyagi@hpe.com"
+Password= "Tyagi@1322610023"
+Name= "Claudia Supply 1"
+Address= "1738 E 21st St"
+City = "ANGELES"
+PostalCode = "90058-1009"
+driver.find_element(By.XPATH,"//input[@placeholder='Username']").send_keys(UserName)
+time.sleep(1)
+driver.find_element(By.XPATH,"//input[@placeholder='Password']").send_keys(Password)
+time.sleep(1)
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+time.sleep(1)
+driver.find_element(By.XPATH,"//span[normalize-space()='Search']").click()
+time.sleep(1)
+driver.find_element(By.ID,"advance-search-Party").click()
+time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-advance-search/div[1]/div/div/hpe-advance-search-form/form[1]/div[1]/div[1]/input").send_keys(Name)
+time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-advance-search/div[1]/div/div/hpe-advance-search-form/form[1]/div[1]/div[2]/input").send_keys(Address)
+time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-advance-search/div[1]/div/div/hpe-advance-search-form/form[1]/div[2]/div[1]/input").send_keys(City)
+time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-advance-search/div[1]/div/div/hpe-advance-search-form/form[1]/div[2]/div[3]/select/option[245]").click()
+time.sleep(1)
+# For California
+driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-advance-search/div[1]/div/div/hpe-advance-search-form/form[1]/div[2]/div[4]/select/option[7]").click()
+time.sleep(1)
+# For Texas
+#driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-advance-search/div[1]/div/div/hpe-advance-search-form/form[1]/div[2]/div[4]/select/option[49]").click()
+#time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-advance-search/div[1]/div/div/hpe-advance-search-form/form[1]/div[3]/div[1]/input").send_keys(PostalCode)
+time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-advance-search/div[1]/div/div/hpe-advance-search-form/form[1]/div[8]/div/button[1]").click()
+time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-advance-search/div[1]/div/div/hpe-advance-search-form/form[1]/div[8]/div/button[3]").click()
+time.sleep(1)
+#driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-create-new/div[1]/p/hpe-party-tab/div/div/form[1]/div[1]/div[2]/div[6]/label/small/span[2]").click()
+#time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-create-new/div[1]/p/hpe-party-tab/div/div/form[1]/div[1]/div[2]/div[6]/ng-select/div/div/div[3]/input").click()
+time.sleep(1)
+#driver.execute_script("document.body.style.zoom='50%'")
+#time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-create-new/div[1]/p/hpe-party-tab/div/div/form[1]/div[1]/div[2]/div[6]/ng-select/ng-dropdown-panel/div/div[2]/div[291]").click()
+time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/hpe-root/div/hpe-shell/div/div/div/div/main/div/hpe-create-new/div[2]/button").click()
+time.sleep(1)
+driver.find_element(By.ID,"chooseDoctoredAddress").click()
+time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/modal-container/div/div/div[2]/p/button").click()
+time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/modal-container/div/div/div[3]/button").click()
+time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/modal-container/div/div/div[3]/button[2]").click()
+time.sleep(60)
